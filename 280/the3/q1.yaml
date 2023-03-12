@@ -1,0 +1,26 @@
+input: '001101'        # input
+blank: ' '              
+start state: q_s          
+table:
+  q_s:
+    [' ','']: {R: q_f}
+    [1,1]: {R: q_f}
+    [0,0]: {R: q_3}
+  q_0:
+    0      : {write: ' ' , R: q_1}
+    
+    [' ','']: {R: accept }
+    
+  q_1:
+    [0,0]: R
+    [1,1]: R  
+    ' '     : {write: ' ' , L: q_2}
+  q_2:
+    1     : {write: ' ' , L: q_3}
+
+  q_3:
+    [1,1]: L
+    [0,0]: L
+    ' '     : {R: q_0}
+  q_f:  
+  accept:

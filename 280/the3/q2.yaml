@@ -1,0 +1,61 @@
+input: '00111'
+blank: ' '
+start state: q_0
+
+table:
+  
+  q_0:
+    0     : {write: 0 , R: q_1}
+    1     : {write: 1 , R: q_1}
+
+  q_1:
+    0      : {write: 0, R}
+    1      : {write: 1, R}
+    ' '     : {write: x , L: q_2}
+  
+  q_2:
+    B      : {write: B, L}    
+    D      : {write: D, L}
+    0     : {write: B , R: q_3}
+    1     : {write: D , R: q_4}
+    ' '     : {write: ' ' , R: q_6}
+    
+  q_3:
+    0      : {write: 0, R}
+    1      : {write: 1, R}
+    B      : {write: B, R}
+    D     : {write: D, R}
+    ' '     : {write: 0 , L: q_5}
+    x      : {write: x, R}
+  
+  q_4:
+    0      : {write: 0, R}
+    1      : {write: 1, R}
+    B      : {write: B, R}
+    D      : {write: D, R}
+    x      : {write: x, R}
+    ' '     : {write: 1 , L: q_5}
+  
+  q_5:
+    0      : {write: 0, L}
+    1      : {write: 1, L}
+    x     : {write: x , L: q_2}
+  
+  
+  q_6:
+    B     : {write: 0, R}
+    D      : {write: 1, R}
+    x     : {write: ' ', R: q_7}
+    
+  q_7:
+    0     : {write: ' ' , L: q_8}
+    1     : {write: ' ' , L: q_10}
+    ' '     : {write: ' ' , L: q_11}
+  q_8:
+    ' '     : {write: 0 , R: q_9}
+  q_9:
+    ' '     : {write: ' ' , R: q_7}
+  q_10:
+    ' '     : {write: 1 , R: q_9}
+  q_11:
+  
